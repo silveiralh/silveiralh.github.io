@@ -14,7 +14,8 @@
             <div class="light center">
                 <h1>Picture of the Day</h1>
                <!--- <input type="text" name="busca" value="" placeholder="AAAA-MM-DD"/> -->
-                <input type="date" min="1997-06-16" max="">         
+                <input type="date" min="1997-06-16" max="">
+                <div class="error" id="error"></div>         
                 <button>BUSCAR</button>
             </div>
             
@@ -41,9 +42,13 @@
                     <script type="text/javascript" charset="utf-8">//Script para a chamada AJAX
                         //Cria o evento de click no botão BUSCAR
                         document.querySelector("button").addEventListener("click", function () { 
-                            var container = document.querySelector("ul");
+                            var container = document.querySelector("ul"),
+                                error = document.getElementById("error");
                             //Cria variável que será utilizada na busca
                             var query = document.querySelector("input").value;
+                            if(query =='' || query.length<=3){
+                                error.innerHTML= "A data não pode estar vazia!";
+                            }
                             axios
                                 //Link da API APOD da nasa com a APIKey gerada no site
                                 .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
@@ -62,6 +67,7 @@
                                         h4 = document.getElementById("description");
                                         ul = document.querySelector("ul");
                                         presentation = document.getElementById("presentation");
+                                        
                                     //Alterando o DOM com as informações da pesquisa
                                     img.src= url;
                                     presentation.innerHTML="";

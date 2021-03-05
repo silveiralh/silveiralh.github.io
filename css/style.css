@@ -106,7 +106,14 @@ li{
 
     justify-content: center;
     align-items: center;
-
+}
+.error{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: crimson;
+    text-decoration: solid;
+    text-transform: uppercase;
 }
 
 img{
@@ -119,3 +126,4 @@ img{
 p{
     text-align: justify;
 }
+
