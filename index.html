@@ -48,7 +48,9 @@
                             var query = document.querySelector("input").value;
                             if(query =='' || query.length<=3){
                                 error.innerHTML= "A data não pode estar vazia!";
-                            }
+                            }else{
+
+                            
                             axios
                                 //Link da API APOD da nasa com a APIKey gerada no site
                                 .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
@@ -84,6 +86,7 @@
                                     explanation.innerHTML= res.data.explanation;
         
                                 });
+                            }
                         });
 
                     </script>
