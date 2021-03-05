@@ -49,43 +49,42 @@
                             if(query =='' || query.length<=3){
                                 error.innerHTML= "A data não pode estar vazia!";
                             }else{
-
-                            
-                            axios
-                                //Link da API APOD da nasa com a APIKey gerada no site
-                                .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
-                                .then(function (res) {
-                                    //Variáveis com os dados do retorno da pesquisa
-                                    var title = res.data.title,
-                                        credits ="Por: "+ res.data.copyright,
-                                        url = res.data.hdurl,
-                                        date = "Data: "+ res.data.date;
-                                    //Variáveis dos componentes criados para exibir o retorno da pesquisa
-                                    var li = document.createElement("li"),
-                                        li2 = document.createElement("li"),
-                                        h1 = document.getElementById("title"),
-                                        img = document.getElementById("picture");
-                                        explanation = document.getElementById("explanation");
-                                        h4 = document.getElementById("description");
-                                        ul = document.querySelector("ul");
-                                        presentation = document.getElementById("presentation");
-                                        
-                                    //Alterando o DOM com as informações da pesquisa
-                                    img.src= url;
-                                    presentation.innerHTML="";
-                                    h1.innerHTML = title;
-                                    li.innerHTML = date;
-                                    ul.innerHTML="";
-                                    ul.appendChild(li)
-                                    //Verificando se tem créditos neste registro, se tiver inclui no DOM
-                                    if(res.data.copyright!=undefined){
-                                        li2.innerHTML=credits;
-                                        ul.appendChild(li2);
-                                    }
-                                    h4.innerHTML = "Descrição";
-                                    explanation.innerHTML= res.data.explanation;
-        
-                                });
+                                error.innerHTML= "";
+                                axios
+                                    //Link da API APOD da nasa com a APIKey gerada no site
+                                    .get("https://api.nasa.gov/planetary/apod?api_key=79ycm95pooOrKtc57kkez7dGAw4E3Fe92MGSVqt4&date=" + query)
+                                    .then(function (res) {
+                                        //Variáveis com os dados do retorno da pesquisa
+                                        var title = res.data.title,
+                                            credits ="Por: "+ res.data.copyright,
+                                            url = res.data.hdurl,
+                                            date = "Data: "+ res.data.date;
+                                        //Variáveis dos componentes criados para exibir o retorno da pesquisa
+                                        var li = document.createElement("li"),
+                                            li2 = document.createElement("li"),
+                                            h1 = document.getElementById("title"),
+                                            img = document.getElementById("picture");
+                                            explanation = document.getElementById("explanation");
+                                            h4 = document.getElementById("description");
+                                            ul = document.querySelector("ul");
+                                            presentation = document.getElementById("presentation");
+                                            
+                                        //Alterando o DOM com as informações da pesquisa
+                                        img.src= url;
+                                        presentation.innerHTML="";
+                                        h1.innerHTML = title;
+                                        li.innerHTML = date;
+                                        ul.innerHTML="";
+                                        ul.appendChild(li)
+                                        //Verificando se tem créditos neste registro, se tiver inclui no DOM
+                                        if(res.data.copyright!=undefined){
+                                            li2.innerHTML=credits;
+                                            ul.appendChild(li2);
+                                        }
+                                        h4.innerHTML = "Descrição";
+                                        explanation.innerHTML= res.data.explanation;
+            
+                                    });
                             }
                         });
 
